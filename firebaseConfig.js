@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import database from "@react-native-firebase/database";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   FIREBASE_API_KEY,
@@ -13,6 +14,7 @@ import {
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
   authDomain: FIREBASE_AUTH_DOMAIN,
+  databaseURL: "https://my-firebase-try-again-default-rtdb.firebaseio.com/",
   projectId: FIREBASE_PROJECT_ID,
   storageBucket: FIREBASE_STORAGE_BUCKET,
   messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
@@ -25,4 +27,6 @@ const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage),
 });
 
-export { app, auth };
+const reference = database().ref("/users/123");
+
+export { app, auth, reference };
